@@ -7,7 +7,7 @@ import "../../../Styles/Administracion.css";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://insightful-patience-production.up.railway.app",
+    baseURL: "https://insightful-patience-production.up.railway.app/",
 });
 
 const Alojamientos = () => {

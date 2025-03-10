@@ -1,24 +1,41 @@
 import { useState, useEffect } from "react";
 import Card from "../Home/CardRecomendaciones";
 
-const RecomendacionesAlojamientos = () => {
+const RecomendacionesAlojamientos = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [alojamientos, setAlojamientos] = useState([]);
   const cardsPerPage = 10;
   const totalCards = 19;
   const totalPages = Math.ceil(totalCards / cardsPerPage);
 
+  const [filteredAlojamientos, setFilteredAlojamientos] = useState([]);
+
   useEffect(() => {
     const fetchAlojamientos = async () => {
-      const response = await fetch("/imagenes.json"); 
+      const response = await fetch("https://insightful-patience-production.up.railway.app/alojamientos"); 
       const data = await response.json();
-      
-      const shuffledAlojamientos = data.map((a) => a).sort(() => Math.random() - 0.5);
-      
+
+      const shuffledAlojamientos = data
+        .map((a) => a)
+        .sort(() => Math.random() - 0.5);
+
       setAlojamientos(shuffledAlojamientos);
     };
     fetchAlojamientos();
   }, []);
+
+  useEffect(() => {
+    if (props.searchQuery && props.searchQuery.length) {
+      const filtered = alojamientos.filter((alojamiento) =>
+        alojamiento.nombre
+          .toLowerCase()
+          .includes(props.searchQuery.toLowerCase())
+      );
+      setFilteredAlojamientos(filtered);
+    } else {
+      setFilteredAlojamientos(alojamientos);
+    }
+  }, [props.searchQuery, alojamientos]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -42,7 +59,7 @@ const RecomendacionesAlojamientos = () => {
         title={alojamiento.nombre}
         description={alojamiento.descripcion}
         price={alojamiento.precio}
-        imageUrl={alojamiento.imagenes[0]} 
+        imagenes={alojamiento.imagenes} 
       />
     ));
   };
@@ -50,7 +67,11 @@ const RecomendacionesAlojamientos = () => {
   return (
     <main className="main__recomendaciones">
       <section className="main__recomendaciones__grid">
-        {renderCards()}
+        {filteredAlojamientos.length ? (
+          renderCards()
+        ) : (
+          <p>No se han encontrado resultados</p>
+        )}
       </section>
       <div className="pagination">
         <button onClick={handlePrevPage} disabled={currentPage === 1}>

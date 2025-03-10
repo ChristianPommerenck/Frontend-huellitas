@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Foto from "./Foto";
 
-function GaleriaModal({ show, setShow, foto = [] }) {
+function GaleriaModal({ show, alt, setShow, foto = [] }) {
   if (!show) return null;
 
   return (
@@ -20,7 +20,7 @@ function GaleriaModal({ show, setShow, foto = [] }) {
 
         <div className="grid_layout_modal">
           {foto.map((foto, index) => (
-            <Foto key={index} imagen={foto} tipoFoto="imagen_modal" />
+            <Foto key={index} imagen={foto.urlImagen} tipoFoto="imagen_modal" alt={alt}/>
           ))}
         </div>
       </div>

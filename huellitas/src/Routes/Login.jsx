@@ -5,6 +5,8 @@ import axios from "axios";
 import { useAuth } from "../Context/Auth.Context";
 import { setToken, setUser, setRol } from "../Reducers/authReducer"
 
+
+
 const API_URL = "https://insightful-patience-production.up.railway.app/api/auth/login";
 const ROL_URL = "https://insightful-patience-production.up.railway.app/usuarios/rol";
 
@@ -15,6 +17,7 @@ const Login = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const { dispatch } = useAuth();
+    const [inicioExitoso, setInicioExitoso] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,11 +51,10 @@ const Login = () => {
                     sessionStorage.setItem("token", data.jwt);
                     localStorage.setItem("user", JSON.stringify(user));
                 }
-
+                setInicioExitoso(true);
                 console.log("Inicio de sesión exitoso:", user);
                 window.dispatchEvent(new Event("storage"));
-
-                
+                             
                 axios.get(`${ROL_URL}/${user.id}`, {
                     headers: {
                         Authorization: `Bearer ${data.jwt}`,
@@ -127,6 +129,9 @@ const Login = () => {
                         <label htmlFor="rememberMe">Recordarme</label>
                     </div>
                     <button type="submit" className="login-button">Iniciar Sesión</button>
+                    {inicioExitoso && (<div class="alert alert-success" role="alert">
+                         ✅ Inicio de sesíon exitoso. Redirigiendo...
+                    </div>)} 
                 </form>
 
                 <div className="extra-links">

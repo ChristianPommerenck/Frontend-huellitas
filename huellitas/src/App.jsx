@@ -4,6 +4,7 @@ import PanelAdmin from "./Routes/PanelAdmin";
 import Detalle from "./Routes/Detalle";
 import Layout from "./Layouts/Layout";
 import NotFoundPage from "./Components/NotFoundPage";
+
 import Registro from "./Routes/Registro";
 import Login from "./Routes/Login";
 import ProtectedRoute from "./Routes/ProtectedRoute";
@@ -11,7 +12,7 @@ import "./Styles/index.css";
 
 
 function App() {
-    return (
+      return (
         <>
             <Routes>
                 <Route path="/" element={<Layout />}>

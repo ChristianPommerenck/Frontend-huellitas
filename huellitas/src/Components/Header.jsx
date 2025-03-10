@@ -5,6 +5,10 @@ import { useState, useEffect } from "react";
 import logo from "/media/svg/logo-svg.svg";
 
 const Header = () => {
+  
+
+ 
+    console.log("Header renderizado");
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,14 +40,8 @@ const Header = () => {
 
   useEffect(() => {
     fetchUser();
-
-    const handleStorageChange = () => {
-      fetchUser(); // Actualizar usuario  en localStorage
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  }, [localStorage.getItem("user")]); // Se ejecuta cada vez que cambia el usuario en localStorage
+  
 
   useEffect(() => {
     console.log("Usuario cargado:", user);
@@ -89,7 +87,7 @@ const Header = () => {
                 </div>
               )}
             </div>
-          ) : (
+          ):(
             <div className="auth-buttons">
               <button
                 className="crear-cuenta-button"

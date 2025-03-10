@@ -2,12 +2,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 
-const CardRecomendaciones = ({ id, title, description, imageUrl , price}) => {
+const CardRecomendaciones = ({ id, title, description, imagenes , price}) => {
   return (
-    <div>
-      <Link to={"/alojamiento/" + id} className="card__recomendaciones">
-      {imageUrl ? (
-        <img loading="lazy" src={imageUrl} alt={title} className="card__image" />
+    <div className="card__recomendaciones" >
+      <Link to={"/alojamiento/" + id}>
+      {imagenes ? (
+        <img loading="lazy" 
+        src={imagenes.length > 0 ? imagenes[0].urlImagen : "/ruta/imagen-por-defecto.jpg"} 
+        alt="Comfort perruno" 
+        className="card__image" />
+   
       ) : (
         <img
           loading="lazy"
@@ -19,7 +23,7 @@ const CardRecomendaciones = ({ id, title, description, imageUrl , price}) => {
       <div className="card__content">
         <h3 className="card__title">{title}</h3>
         <p className="card__description">{description}</p>
-        <p className="card__description">{price}</p>
+        <p className="card__price">${price}</p>
       </div>
       </Link>
     </div>
@@ -27,10 +31,11 @@ const CardRecomendaciones = ({ id, title, description, imageUrl , price}) => {
 };
 
 CardRecomendaciones.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
+  price: PropTypes.number.isRequired,
+  imageUrl: PropTypes.array,
 };
 
 export default CardRecomendaciones;

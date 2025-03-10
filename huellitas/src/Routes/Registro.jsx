@@ -126,7 +126,8 @@ export default function Registro() {
           <button type="submit" className="registro-button">Registrarse</button>
 
           {registroExitoso && (
-            <p className="success-message">✅ Registro exitoso. Redirigiendo...</p>
+            <div class="alert alert-success" role="alert">
+            ✅ Registro exitoso. Redirigiendo... </div> 
           )}
         </form>
       </div>

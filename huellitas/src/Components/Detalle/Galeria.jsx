@@ -4,8 +4,9 @@ import Foto from './Foto';
 import '../../Styles/Galeria.css'
 import GaleriaModal from './GaleriaModal';
 
-function Galeria({ imagenes = [] }) {
+function Galeria({ imagenes }) {
   const [show, setShow] = useState(false);
+  console.log(imagenes)
    
   return (
       <div className='grid_layout_galeria'>
@@ -13,7 +14,8 @@ function Galeria({ imagenes = [] }) {
           <Foto
             key={index}
             tipoFoto={index === 0 ? "imagen_principal" : "imagen_secundaria"}
-            imagen={imagen} 
+            imagen={imagen.urlImagen} 
+            alt={`Imagen ${index + 1}`}
           />
         ))} 
         {!show && ( <Button className="boton_vermas_galeria" variant="primary"

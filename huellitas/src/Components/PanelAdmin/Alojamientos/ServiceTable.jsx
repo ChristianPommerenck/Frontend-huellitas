@@ -2,6 +2,9 @@ import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 const ServiceTable = ({ servicios, busqueda, handleEdit, handleDelete, categorias }) => {
+    // Asegurar que busqueda nunca sea null o undefined
+    const busquedaLimpia = busqueda ? busqueda.toLowerCase() : "";
+
     return (
         <div className="table-container">
             <table>

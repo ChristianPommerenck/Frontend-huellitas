@@ -1,10 +1,13 @@
 import BarraBusqueda from "./BarraBusqueda";
 
-const ApartadoBusqueda = () => {
+const ApartadoBusqueda = (props) => {
   return (
     <section className="main__buscar w-100">
       <p>Encuentra un alojamiento para tu pequeño</p>
-      <BarraBusqueda />
+      <BarraBusqueda
+        searchQuery={props.searchQuery}
+        setSearchQuery={props.setSearchQuery}
+      />
     </section>
   );
 };
