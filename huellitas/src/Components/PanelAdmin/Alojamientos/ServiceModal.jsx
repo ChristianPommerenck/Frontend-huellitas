@@ -30,7 +30,13 @@ const ServiceModal = ({
                 <h3>{servicioEditando ? "Editar Servicio" : "Agregar Servicio"}</h3>
                 <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 <input type="text" placeholder="Descripción" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
-                <input type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)} />
+                <input
+                    type="number"
+                    placeholder="Precio"
+                    value={precio}
+                    onChange={(e) => setPrecio(e.target.value)}
+                    min="0"
+                />
                 <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                     <option value="">Seleccionar Categoría</option>
                     {categorias.length > 0 ? (
