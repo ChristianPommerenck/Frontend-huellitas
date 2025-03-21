@@ -3,6 +3,7 @@ import Sidebar from "../Components/PanelAdmin/SideBar";
 import "../Styles/Administracion.css";
 import Alojamientos from "../Components/PanelAdmin/Alojamientos/SectionAlojamientos";
 import Usuarios from "../Components/PanelAdmin/Usuarios/UserSection";
+import Categorias from "../Components/PanelAdmin/Categorias/CategoriaSection";
 import { useAuth } from "../Context/Auth.Context";
 import { useNavigate } from "react-router-dom";
 
@@ -34,6 +35,8 @@ const PanelAdmin = () => {
                 return <Alojamientos />;
             case "usuarios":
                 return <Usuarios />;
+            case "categorias":
+                return <Categorias />;
             default:
                 return <Alojamientos />;
         }

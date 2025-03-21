@@ -1,0 +1,137 @@
+
+.busqueda-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  
+  margin: 40px auto;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 0.7px solid #e76f51;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 10px; 
+  position: relative
+}
+
+.busqueda-input-container {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.busqueda-input {
+  flex-grow: 1;
+  width: 100%;
+  padding: 10px 12px 10px 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.busqueda-icono {
+  position: absolute;
+  left: 10px;
+  color: #e76f51;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+
+
+.busqueda-fechas input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 140px;
+  text-align: center;
+}
+
+.busqueda-boton {
+  flex-shrink: 0;
+  padding: 10px 15px;
+  background-color: #e76f51;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.busqueda-boton:hover {
+  background-color: white;
+  color: #e76f51;
+  border: 1px solid #e76f51;
+}
+.sugerencias-lista {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10; 
+  max-height: 200px; 
+  overflow-y: auto; 
+}
+.busqueda-sugerencias {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  max-width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10; 
+  max-height: 200px;
+  overflow-y: auto;
+  padding:  0;
+  margin: 0;
+  list-style: none;
+}
+
+.busqueda-sugerencias li {
+  display: flex;
+  align-items: center;  
+  gap: 10px;            
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  
+}
+
+.busqueda-sugerencias li:hover {
+  background-color: #f5f5f5;
+}
+.busqueda-sugerencias li .busqueda-icono {
+  font-size: 18px;  
+  color: #000;   
+  flex-shrink: 0; 
+  margin-right: 5px;  
+}
+.busqueda-sugerencia-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+.busqueda-sugerencias li strong {
+  flex-grow: 1; 
+  font-size: 16px; 
+  white-space: nowrap; 
+}
+
+.busqueda-fechas {
+  display: flex;
+  flex-direction: row; 
+  gap: 10px; 
+  align-items: center; 
+}

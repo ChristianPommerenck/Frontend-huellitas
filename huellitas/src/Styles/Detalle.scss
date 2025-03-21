@@ -1,3 +1,6 @@
+@use "colors";
+@use "sass:color";
+
 .back-button {
   position: fixed;
   top: 90px;
@@ -182,5 +185,76 @@
     .reserve-button {
       margin-top: 30px;
     }
+
+    /* Ocupa una fecha en rojo */
+
+
+/* Fechas disponibles en verde */
+.disponible {
+  background-color: #ccffcc !important; /* Verde claro */
+  color: green !important;
+  font-weight: bold;
+}
+
+/* Contenedor del calendario */
+.calendario-disponibilidad{
+  display: grid;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto auto auto, 1fr);
+  gap: 8px;
+  .calendario-titulo{
+    grid-column: span 2 / span 2;
+    height: fit-content;
+  }  
+}
+.contenedor-calendario {
+  text-align: center;
+}
+
+
+.calendario-wrapper{
+  .formulario-mascota-reserva{
+    margin: 10px;
+    width: 600px;
   }
+
+  .mascota_nueva{
+      width: 100%;
+      padding: .375rem 2.25rem .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--bs-body-color);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: var(--bs-body-bg);
+      background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+      background-repeat: no-repeat;
+      background-position: right .75rem center;
+      background-size: 16px 12px;
+      border: var(--bs-border-width) solid var(--bs-border-color);
+      border-radius: var(--bs-border-radius);
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+      margin-top: 10px;
+}
+}
+
+
+
+
+
+/* Botones */
+.botones {
+  margin-top: 10px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+}
 }

@@ -1,0 +1,61 @@
+@use "../colors";
+@use "sass:color";
+
+/* Estilo para las fechas pasadas */
+.react-calendar__tile.fecha-pasada {
+    background-color: #ffffff; 
+    color: #bdbdbd; 
+    cursor: not-allowed; 
+  }
+  
+  /* Estilo para el rango seleccionado */
+  .react-calendar__tile.rango-seleccionado {
+    background-color: #e6f7ff; /* Fondo azul claro */
+    color: #1890ff; /* Texto azul */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  /* Estilo para la fecha de inicio y fin */
+  .react-calendar__tile--active {
+    background-color: #1890ff; /* Fondo azul */
+    color: white; /* Texto blanco */
+  }
+
+  .react-calendar{
+    border: 3px solid colors.$primary;
+    border-radius: 5%;
+    width: auto;
+
+    .react-calendar__navigation{
+      margin: 5px;
+
+      button{
+        border-radius: 10px;
+        background-color: colors.$light;
+      }
+
+      span{
+        font-size: clamp(8px, 1.5vw, 16px);
+        display: flex;
+        flex-wrap: wrap;
+        white-space:nowrap;
+        width: 100%;
+      }
+    }
+
+    .react-calendar__tile--now {
+      background: colors.$light !important; 
+      color: inherit !important; 
+      cursor: not-allowed !important; 
+    }
+
+    .react-calendar__tile{
+      border-radius: 20px;
+    }
+
+    .react-calendar__month-view__days {
+      display: grid !important;
+      grid-template-columns: repeat(7, 1fr) !important;
+    }
+    
+  }

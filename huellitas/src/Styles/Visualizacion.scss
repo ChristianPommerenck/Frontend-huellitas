@@ -1,0 +1,52 @@
+.disponibilidad-container {
+    text-align: center;
+    padding: 20px;
+  
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+  
+    .calendarios {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+  
+    .react-calendar {
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .disponible {
+      background-color: #28a745 !important;
+      color: white;
+      border-radius: 5px;
+    }
+  
+    .ocupado {
+      background-color: #dc3545 !important;
+      color: white;
+      border-radius: 5px;
+    }
+  
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background-color: #0056b3;
+    }
+  }
+  

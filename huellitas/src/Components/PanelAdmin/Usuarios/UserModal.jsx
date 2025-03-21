@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-const API_URL = "https://insightful-patience-production.up.railway.app/usuarios";
+const API_URL = import.meta.env.VITE_BACKEND_URL + "/usuarios";
 
 const UserModal = ({
     modalAbierto,

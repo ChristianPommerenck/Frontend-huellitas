@@ -7,7 +7,7 @@ import "../../../Styles/Administracion.css";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://insightful-patience-production.up.railway.app/",
+    baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
 const Alojamientos = () => {
@@ -34,7 +34,7 @@ const Alojamientos = () => {
                     setServicios(response.data);
                 } else {
                     console.error("La API no devolvió un array:", response.data);
-                    setServicios([]); // Evita errores en el map
+                    setServicios([]);
                 }
             })
             .catch((error) => {

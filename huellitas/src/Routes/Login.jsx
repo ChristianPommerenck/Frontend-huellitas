@@ -7,8 +7,8 @@ import { setToken, setUser, setRol } from "../Reducers/authReducer"
 
 
 
-const API_URL = "https://insightful-patience-production.up.railway.app/api/auth/login";
-const ROL_URL = "https://insightful-patience-production.up.railway.app/usuarios/rol";
+const API_URL = import.meta.env.VITE_BACKEND_URL  + "/api/auth/login";
+const ROL_URL = import.meta.env.VITE_BACKEND_URL + "/usuarios/rol";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -129,7 +129,7 @@ const Login = () => {
                         <label htmlFor="rememberMe">Recordarme</label>
                     </div>
                     <button type="submit" className="login-button">Iniciar Sesión</button>
-                    {inicioExitoso && (<div class="alert alert-success" role="alert">
+                    {inicioExitoso && (<div className="alert alert-success" role="alert">
                          ✅ Inicio de sesíon exitoso. Redirigiendo...
                     </div>)} 
                 </form>

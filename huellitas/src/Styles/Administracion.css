@@ -23,15 +23,14 @@
   width: 300px;
   background-color: #f4e3c1;
   padding: 20px;
-  height: 80vh; 
+  height: 80vh;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   margin-left: 30px;
   margin-top: 30px;
-  border-radius: 30px; 
+  border-radius: 30px;
 }
-
 
 .sidebar h2 {
   text-align: center;
@@ -86,7 +85,7 @@
   background-color: white;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 30px; 
+  border-radius: 30px;
 }
 
 .input-busqueda {
@@ -106,7 +105,7 @@
   display: flex;
   align-items: center;
   transition: background 0.3s;
-  border-radius: 30px; 
+  border-radius: 30px;
 }
 
 .btn-agregar svg {
@@ -141,38 +140,48 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
 }
 
-
-th {
-  background-color: #f4d4b5;
+.td-categoria {
+  text-align: center;
 }
 
-td:last-child {
+.table-categoria {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
+th {
+  background-color: #f4d4b5;
+}
+
+.table-categorias td:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 
 .preview-img-table {
-  width: 40px;  
+  width: 40px;
   height: 40px;
-  object-fit: cover; 
-  border-radius: 5px; 
+  object-fit: cover;
+  border-radius: 5px;
   margin: 2px;
 }
 
 /* Contenedor de imágenes: las coloca en una fila */
 .image-preview {
   display: flex;
-  flex-wrap: wrap;  /* Permite que las imágenes bajen de línea si no caben */
+  flex-wrap: wrap; /* Permite que las imágenes bajen de línea si no caben */
   gap: 10px; /* Espacio entre imágenes */
   margin-top: 10px;
 }
@@ -231,6 +240,10 @@ td:last-child {
   color: #6d4c41;
   cursor: pointer;
 }
+.add-icon {
+  color: #6d4c41;
+  cursor: pointer;
+}
 
 /* Modal */
 .modal {
@@ -268,9 +281,9 @@ td:last-child {
 
 /* Estilos para los inputs dentro del modal */
 .modal-content input {
-  width: 100%; 
+  width: 100%;
   padding: 10px;
-  margin: 10px 0; 
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
@@ -279,9 +292,9 @@ td:last-child {
 }
 
 .modal-content select {
-  width: 100%; 
+  width: 100%;
   padding: 10px;
-  margin: 10px 0; 
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
@@ -307,28 +320,28 @@ td:last-child {
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s;
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  text-align: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .modal-content .btn-agregar:hover {
   background-color: #d19a6c;
 }
 
-.modal h3 { 
-color: #6d4c41;
+.modal h3 {
+  color: #6d4c41;
 }
 
 /* Oculta el contenido si la pantalla es menor a 1024px */
 @media (max-width: 1024px) {
   .admin-container {
-    display: none; 
+    display: none;
   }
-  
+
   .mobile-warning {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -373,7 +386,7 @@ color: #6d4c41;
 }
 
 .mi-boton-cancelar {
-  background-color: #6d4c41 !important; 
+  background-color: #6d4c41 !important;
   color: white !important;
   border-radius: 5px;
   padding: 10px 20px;
@@ -386,7 +399,7 @@ color: #6d4c41;
 }
 
 .mi-boton-ok {
-  background-color: #8eb897 !important; 
+  background-color: #8eb897 !important;
   color: white !important;
   border-radius: 5px;
   padding: 10px 20px;

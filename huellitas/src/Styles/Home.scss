@@ -1,66 +1,149 @@
 @use "colors";
 @use "sass:color";
 
+
 .main__categorias {
-  & > span {
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 2rem;
+  }
+
+  /* 🏎️ Contenedor principal del slider */
+  .carousel-container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+  }
+
+  /* 📦 Contenedor visible del slider */
+  .carousel-slider {
+    overflow: hidden;
+    width: 80%;
+    max-width: 1000px;
+  }
+
+  /* 🎢 Track que mueve las tarjetas */
+  .carousel-track {
+    display: flex;
     gap: 1rem;
-    height: 300px;
+    transition: transform 0.5s ease-in-out;
+    width: fit-content; // Ajusta el ancho a los elementos internos
+  }
+
+  /* 🎴 Tarjetas de categoría */
+  .card__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    gap: 1rem;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 180px; 
+    height: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
     .categorias__card {
-      position: relative;
-      background-color: colors.$white;
-      border: 3px colors.$light solid;
-      padding: 3px;
-      border-radius: 13px;
-      width: 370px;
-      cursor: pointer;
-      img {
-        position: relative;
-        border-radius: 10px;
-        width: 100%;
-        aspect-ratio: 2/1;
-        object-fit: cover;
-        filter: grayscale(20%) brightness(50%);
-        text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.51);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s ease;
 
-        ::before {
-          content: "asda";
-          position: absolute;
-          top: 0;
-          left: 5px;
-          width: 100%;
-          height: 100%;
-          background-color: black;
-        }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
       }
-      p {
-        user-select: none;
-        z-index: 1;
-        color: colors.$white;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
+      img {
         width: 100%;
         height: 100%;
-        text-align: center;
-        font-size: 2rem;
-        padding: 2ch;
-        text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.51);
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        filter: grayscale(30%);
+        
+        &:hover {
+          transform: scale(1.1);
+          filter: grayscale(0%);
+        }
       }
     }
 
-    :hover {
-      img {
-        filter: brightness(60%);
+    .categorias__card__info {
+      text-align: center;
+      margin-top: 10px;
+
+      p {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .cantidad {
+        font-size: 0.9rem;
+        color: #777;
       }
     }
   }
+
+  /* 🎮 Botones de navegación */
+  .prev-btn, .next-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+
+  /* 📱 Responsive */
+  @media (max-width: 768px) {
+    .carousel-slider {
+      width: 90%;
+    }
+  }
 }
+
+
+
+
 
 .main__recomendaciones {
   display: flex;
@@ -69,12 +152,11 @@
   background-color: colors.$light;
   padding: 3rem 2rem;
   align-items: center;
-  position: relative;
 
   h1 {
     color: colors.$primary;
     font-size: 2rem;
-    font-weight: 1000;
+    font-weight: bold;
     text-align: center;
   }
 
@@ -83,12 +165,38 @@
     width: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     justify-items: center;
+    align-items: start;
+    min-height: 400px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    position: relative;
+    gap: 1rem;
+    margin-top: 20px;
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: colors.$primary;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: color.adjust(colors.$primary, $lightness: -10%)
+      }
+
+      &:disabled {
+        background-color: gray;
+        cursor: not-allowed;
+      }
+    }
   }
 }
 
@@ -169,26 +277,7 @@
 
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
 
-  button {
-    padding: 10px;
-    border: none;
-    background-color: colors.$primary;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-
-    &:disabled {
-      background-color: gray;
-      cursor: not-allowed;
-    }
-  }
-}
 
 @media (max-width: 768px) {
   .main__recomendaciones__grid {

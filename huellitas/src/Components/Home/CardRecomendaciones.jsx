@@ -1,17 +1,26 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+const CardRecomendaciones = ({ id, title, description, imagenes, price, alojamiento }) => {
+  const navigate = useNavigate();
 
-const CardRecomendaciones = ({ id, title, description, imagenes , price}) => {
+  const handleCardClick = () => {
+    // Navegar a la página de detalles
+    navigate(`/alojamiento/${id}`, { state: alojamiento });
+
+    // Forzar una recarga de la página para asegurarse de que el contenido se actualice
+    window.location.reload();
+  };
+
   return (
-    <div className="card__recomendaciones" >
-      <Link to={"/alojamiento/" + id}>
+    <div className="card__recomendaciones" onClick={handleCardClick}>
       {imagenes ? (
-        <img loading="lazy" 
-        src={imagenes.length > 0 ? imagenes[0].urlImagen : "/ruta/imagen-por-defecto.jpg"} 
-        alt="Comfort perruno" 
-        className="card__image" />
-   
+        <img
+          loading="lazy"
+          src={imagenes.length > 0 ? imagenes[0].urlImagen : "/ruta/imagen-por-defecto.jpg"}
+          alt="Comfort perruno"
+          className="card__image"
+        />
       ) : (
         <img
           loading="lazy"
@@ -25,7 +34,6 @@ const CardRecomendaciones = ({ id, title, description, imagenes , price}) => {
         <p className="card__description">{description}</p>
         <p className="card__price">${price}</p>
       </div>
-      </Link>
     </div>
   );
 };
@@ -35,7 +43,8 @@ CardRecomendaciones.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  imageUrl: PropTypes.array,
+  imagenes: PropTypes.array,
+  alojamiento: PropTypes.object,
 };
 
 export default CardRecomendaciones;

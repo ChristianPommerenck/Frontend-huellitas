@@ -1,4 +1,4 @@
-import { FaHome, FaClipboardList, FaCog } from "react-icons/fa";
+import { FaHome, FaClipboardList, FaCog, FaTags } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 
 const Sidebar = ({ onSectionChange }) => {
@@ -14,6 +14,9 @@ const Sidebar = ({ onSectionChange }) => {
                 </li>
                 <li onClick={() => onSectionChange("usuarios")}>
                     <FaUserGroup /> Gestión de Usuarios
+                </li>
+                <li onClick={() => onSectionChange("categorias")}>
+                <FaTags /> Gestión de Categorías
                 </li>
                 <li className="config-admin" onClick={() => onSectionChange("configuracion")}>
                     <FaCog /> Configuración del Sitio

@@ -25,7 +25,7 @@ const Header = () => {
       }
   
       const userData = JSON.parse(storedUser);
-      const response = await fetch(`https://insightful-patience-production.up.railway.app/usuarios/${userData.id}`);
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/usuarios/${userData.id}`);
       
       if (!response.ok) throw new Error("Error al obtener usuario");
   
@@ -40,7 +40,8 @@ const Header = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [localStorage.getItem("user")]); // Se ejecuta cada vez que cambia el usuario en localStorage
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [localStorage.getItem("user")]); 
   
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("rol");
+    localStorage.removeItem("token");
     window.dispatchEvent(new Event("storage"));
     setUser(null);
     navigate("/");
