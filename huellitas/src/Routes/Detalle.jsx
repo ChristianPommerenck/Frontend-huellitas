@@ -37,7 +37,7 @@ const Detalle = () => {
     if (user) {
       try {
         const userData = JSON.parse(user);
-        setUserID(4); // Aquí deberías usar userData.id si el ID del usuario está en el objeto user
+        setUserID(userData.id); // Aquí deberías usar userData.id si el ID del usuario está en el objeto user
       } catch (error) {
         console.error("Error al parsear el usuario:", error);
       }
@@ -105,7 +105,7 @@ const Detalle = () => {
       })
       .catch((error) => console.error("Error cargando los detalles:", error));
   }, [id]);
-  
+
   // Función para agregar una nueva mascota
   const agregarMascota = async () => {
     if (nuevaMascotaNombre.trim() === "") {
