@@ -49,7 +49,7 @@ const Detalle = () => {
       const obtenerMascotas = async () => {
         try {
           setCargando(true);
-          const response = await axios.get(`${url_base}/clientes/4`, {
+          const response = await axios.get(`${url_base}/clientes/${userID}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -129,7 +129,7 @@ const Detalle = () => {
       );
 
       // Obtener la lista actualizada de mascotas desde el servidor
-      const response = await axios.get(`${url_base}/clientes/4`, {
+      const response = await axios.get(`${url_base}/clientes/${userID}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
