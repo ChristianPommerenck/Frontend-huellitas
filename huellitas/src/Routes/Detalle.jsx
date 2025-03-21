@@ -10,6 +10,7 @@ const Detalle = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log("ID del alojamiento:", id);
   const [alojamiento, setAlojamiento] = useState(null);
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [fechasSeleccionadas, setFechasSeleccionadas] = useState([null, null]);
@@ -68,6 +69,11 @@ const Detalle = () => {
 
   // Obtener los detalles del alojamiento
   useEffect(() => {
+    if (!id) {
+      console.error("ID no disponible en useParams");
+      return;
+    }
+  
     if (!location.state) {
       axios
         .get(`${url_base}/alojamientos/${id}`)
@@ -82,28 +88,24 @@ const Detalle = () => {
 
   // Obtener las reservas del alojamiento
   useEffect(() => {
-    if (alojamiento) {
-      axios
-        .get(`${url_base}/alojamientos/${id}`)
-        .then((response) => {
-          console.log("Respuesta del backend:", response.data); // Inspecciona la respuesta
+    if (!id) return;
   
-          // Verifica si response.data.reservas es un array
-          if (response.data.reservas && Array.isArray(response.data.reservas)) {
-            const fechasReservadas = response.data.reservas.map((reserva) => ({
-              fechaInicio: new Date(reserva.fechaDesde),
-              fechaFin: new Date(reserva.fechaHasta),
-            }));
-            setFechasReservadas(fechasReservadas);
-          } else {
-            console.warn("No hay reservas para este alojamiento.");
-            setFechasReservadas([]); // Inicializa con un array vacío
-          }
-        })
-        .catch((error) => console.error("Error al obtener las reservas:", error));
-    }
-  }, [alojamiento, id]);
-
+    axios
+      .get(`${url_base}/alojamientos/${id}`)
+      .then((response) => {
+        setAlojamiento(response.data);
+  
+        if (response.data.reservas && Array.isArray(response.data.reservas)) {
+          const fechasReservadas = response.data.reservas.map((reserva) => ({
+            fechaInicio: new Date(reserva.fechaDesde),
+            fechaFin: new Date(reserva.fechaHasta),
+          }));
+          setFechasReservadas(fechasReservadas);
+        }
+      })
+      .catch((error) => console.error("Error cargando los detalles:", error));
+  }, [id]);
+  
   // Función para agregar una nueva mascota
   const agregarMascota = async () => {
     if (nuevaMascotaNombre.trim() === "") {
@@ -174,7 +176,7 @@ const Detalle = () => {
           fechaDesde: fechaDesdeFormateada,
           fechaHasta: fechaHastaFormateada,
           mascotaId: mascotaSeleccionada,
-          clienteId: 4,
+          clienteId: userID,
         },
         {
           headers: {
