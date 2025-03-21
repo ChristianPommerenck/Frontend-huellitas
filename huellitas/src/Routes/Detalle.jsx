@@ -67,20 +67,34 @@ const Detalle = () => {
     }
   }, [token, userID]);
 
-  // Obtener los detalles del alojamiento y las reservas
+  // Obtener los detalles del alojamiento
   useEffect(() => {
     if (!id) {
       console.error("ID no disponible en useParams");
       return;
     }
+  
+    if (!location.state) {
+      axios
+        .get(`${url_base}/alojamientos/${id}`)
+        .then((response) => {
+          setAlojamiento(response.data);
+        })
+        .catch((error) => console.error("Error cargando los detalles:", error));
+    } else {
+      setAlojamiento(location.state);
+    }
+  }, [id, location.state]);
 
-    const obtenerAlojamiento = async () => {
-      try {
-        // Obtener detalles del alojamiento y sus reservas
-        const response = await axios.get(`${url_base}/alojamientos/${id}`);
+  // Obtener las reservas del alojamiento
+  useEffect(() => {
+    if (!id) return;
+  
+    axios
+      .get(`${url_base}/alojamientos/${id}`)
+      .then((response) => {
         setAlojamiento(response.data);
-
-        // Obtener las fechas reservadas
+  
         if (response.data.reservas && Array.isArray(response.data.reservas)) {
           const fechasReservadas = response.data.reservas.map((reserva) => ({
             fechaInicio: new Date(reserva.fechaDesde),
@@ -88,12 +102,8 @@ const Detalle = () => {
           }));
           setFechasReservadas(fechasReservadas);
         }
-      } catch (error) {
-        console.error("Error cargando los detalles:", error);
-      }
-    };
-
-    obtenerAlojamiento();
+      })
+      .catch((error) => console.error("Error cargando los detalles:", error));
   }, [id]);
 
   // Función para agregar una nueva mascota
@@ -198,11 +208,7 @@ const Detalle = () => {
         <div className="content">
           <div className="service-container">
             <h2 className="hospedaje-premium">{alojamiento.nombre}</h2>
-            {alojamiento.imagenes && alojamiento.imagenes.length > 0 ? (
-              <Galeria imagenes={alojamiento.imagenes} key={id} />
-            ) : (
-              <p>Cargando imágenes...</p>
-            )}
+            <Galeria imagenes={alojamiento.imagenesUrl} />
             <div className="servicio-detalle">
               <h4>Descripción:</h4>
               <p>{alojamiento.descripcion}</p>
@@ -225,9 +231,7 @@ const Detalle = () => {
                 <div className="formulario-mascota-reserva">
                   {/* Lista de mascotas existentes */}
                   <form>
-                    <select
-                      className="form-select"
-                      aria-label="Default select example"
+                    <select class="form-select" aria-label="Default select example"
                       value={mascotaSeleccionada}
                       onChange={(e) => setMascotaSeleccionada(e.target.value)}
                     >
@@ -254,9 +258,8 @@ const Detalle = () => {
 
                   {/* Input para agregar una nueva mascota (solo se muestra si mostrarInputNuevaMascota es true) */}
                   {mostrarInputNuevaMascota && (
-                    <form onSubmit={(e) => e.preventDefault()}>
-                      <input
-                        className="mascota_nueva"
+                    <form  onSubmit={(e) => e.preventDefault()}>
+                      <input className="mascota_nueva"
                         type="text"
                         placeholder="Nombre de la mascota"
                         value={nuevaMascotaNombre}
