@@ -208,7 +208,11 @@ const Detalle = () => {
         <div className="content">
           <div className="service-container">
             <h2 className="hospedaje-premium">{alojamiento.nombre}</h2>
+            {alojamiento.imagenes && alojamiento.imagenes.length > 0 ? (
             <Galeria imagenes={alojamiento.imagenes} />
+            ) : (
+            <p>Cargando imágenes...</p>
+            )}
             <div className="servicio-detalle">
               <h4>Descripción:</h4>
               <p>{alojamiento.descripcion}</p>
